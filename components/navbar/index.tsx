@@ -5,7 +5,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { IoNotificationsOffOutline } from "react-icons/io5";
+import { IoBatteryChargingOutline, IoNotificationsOffOutline, IoVolumeMediumOutline, IoWifiOutline } from "react-icons/io5";
 
 const Navbar = () => {
     const [time, setTime] = useState<Date>(new Date());
@@ -28,7 +28,6 @@ const Navbar = () => {
         const updateDateTime = () => {
             setTime(new Date());
         };
-        // Initial call
         updateDateTime();
         const intervalId = setInterval(updateDateTime, 60000);
         return () => clearInterval(intervalId);
@@ -36,25 +35,35 @@ const Navbar = () => {
 
 
     return (
-        <header className="absolute top-0 w-full bg-zinc-950">
-            <nav className="flex items-center justify-between px-2 relative py-3">
-                {/* start of the nav */}
-                <div className="flex-none px-4 font-bold bg-slate-300 py-1 rounded-md"></div>
+        <header className="absolute top-0 w-full bg-zinc-950 text-gray-300">
+            <nav className="flex items-center justify-between px-2 relative py-1">
+                <div className="p-2 rounded-xl hover:bg-zinc-700">
+                    <div className="flex-none px-4 font-bold bg-slate-300 py-1 rounded-md"></div>
+                </div>
 
-                {/* mid of the nav bar */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 text-gray-300">
+                <div className="absolute left-1/2 transform -translate-x-1/2 ">
                     <Popover>
                         <PopoverTrigger className="flex items-center">
-                            <span className="text-sm font-medium">{formatDateTime(time)}</span>
-                            <span><IoNotificationsOffOutline className="ml-4" /></span>
+                            <span className="text-sm font-medium  rounded-xl hover:bg-zinc-700 px-4 py-1">
+                                {formatDateTime(time)}
+                            </span>
+                            <span><IoNotificationsOffOutline className="ml-1" /></span>
                         </PopoverTrigger>
                         <PopoverContent>Place content for the popover here.</PopoverContent>
                     </Popover>
                 </div>
 
-                {/* end of the navbar */}
                 <ul className="flex-none flex space-x-4">
-
+                    <li className=" ">
+                        <Popover>
+                            <PopoverTrigger className="flex items-center text-xl text-slate-50 space-x-3  rounded-xl hover:bg-zinc-700 px-4 py-1 ">
+                                <IoWifiOutline />
+                                <IoVolumeMediumOutline />
+                                <IoBatteryChargingOutline />
+                            </PopoverTrigger>
+                            <PopoverContent>Place content for the popover here.</PopoverContent>
+                        </Popover>
+                    </li>
                 </ul>
             </nav>
         </header>

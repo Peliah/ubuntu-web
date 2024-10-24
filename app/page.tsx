@@ -1,5 +1,8 @@
+"use client";
+
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import Terminal from "@/components/terminal";
 import {
   ContextMenu,
   ContextMenuCheckboxItem,
@@ -12,9 +15,19 @@ import {
   ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
+import { useState } from "react";
 
 
 export default function Home() {
+  const [showTerminal, setShowTerminal] = useState(false);
+
+  const handleTerminalOpen = () => {
+    setShowTerminal(true);
+  };
+
+  const handleTerminalClose = () => {
+    setShowTerminal(false);
+  };
   return (
     <div className="min-h-screen flex flex-col ">
       <Navbar />
@@ -67,7 +80,9 @@ export default function Home() {
 
       </div>
 
-      <Footer />
+      <Footer onTerminalClick={handleTerminalOpen} />
+      {/* Render the Terminal component conditionally */}
+      {showTerminal && <Terminal onClose={handleTerminalClose} />}
     </div>
   );
 }

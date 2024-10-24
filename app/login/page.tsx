@@ -1,7 +1,6 @@
-// app/login/page.tsx
 "use client";
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Update import for the router
+import { useRouter } from 'next/navigation';
 
 const demoCredentials = {
     username: 'demoUser',
@@ -12,12 +11,12 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const router = useRouter(); // Initialize the router
+    const router = useRouter();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (username === demoCredentials.username && password === demoCredentials.password) {
-            router.push('/'); // Redirect to the home page
+            router.push('/');
         } else {
             setError('Invalid credentials. Please try again.');
         }

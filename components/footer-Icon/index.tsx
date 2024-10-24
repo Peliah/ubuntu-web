@@ -8,12 +8,13 @@ interface IconProps {
         alt: string;
         name: string;
         isActive: boolean;
+        onClick?: () => void;
     };
 }
 
 const FootIcon: React.FC<IconProps> = ({ icon }) => {
     return (
-        <div className="flex flex-col items-center relative hover:bg-zinc-600 hover:ring-1 rounded-full p-3 w-12 h-12">
+        <div className="flex flex-col items-center relative hover:bg-zinc-600 hover:ring-1 rounded-full p-3 w-12 h-12" onClick={icon.onClick}>
             <div className="hoverable-button">
                 <Image src={icon.src} alt={icon.alt} height={20} width={20} />
                 {icon.isActive && (

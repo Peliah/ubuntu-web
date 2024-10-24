@@ -3,31 +3,36 @@
 import Image from "next/image"
 import FootIcon from "../footer-Icon";
 
-const iconsData = [
-    {
-        id: 1,
-        src: '/assets/chrome-svgrepo-com.svg',
-        alt: 'chrome',
-        name: 'Chrome',
-        isActive: true,
-    },
-    {
-        id: 2,
-        src: '/assets/vlc-svgrepo-com.svg',
-        alt: 'vlc',
-        name: 'VLC',
-        isActive: true,
-    },
-    {
-        id: 3,
-        src: '/assets/terminal-svgrepo-com.svg',
-        alt: 'terminal',
-        name: 'Terminal',
-        isActive: false, // Not active, won't display the dot below
-    }
-];
+interface FooterProps {
+    onTerminalClick: () => void;
+}
 
-const Footer = () => {
+
+const Footer: React.FC<FooterProps> = ({ onTerminalClick }) => {
+    const iconsData = [
+        {
+            id: 1,
+            src: '/assets/chrome-svgrepo-com.svg',
+            alt: 'chrome',
+            name: 'Chrome',
+            isActive: true,
+        },
+        {
+            id: 2,
+            src: '/assets/vlc-svgrepo-com.svg',
+            alt: 'vlc',
+            name: 'VLC',
+            isActive: true,
+        },
+        {
+            id: 3,
+            src: '/assets/terminal-svgrepo-com.svg',
+            alt: 'terminal',
+            name: 'Terminal',
+            isActive: false, // Not active, won't display the dot below
+            onClick: onTerminalClick,
+        }
+    ];
     return (
         <div className="group">
             {/* Footer  */}

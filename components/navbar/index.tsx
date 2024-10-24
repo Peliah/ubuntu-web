@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react"
 import {
     Popover,
-    PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { IoBatteryChargingOutline, IoNotificationsOffOutline, IoVolumeMediumOutline, IoWifiOutline } from "react-icons/io5";
+import Notification from "./notification-content";
+import UtilsBox from "./utils-box";
 
 const Navbar = () => {
     const [time, setTime] = useState<Date>(new Date());
@@ -49,7 +50,7 @@ const Navbar = () => {
                             </span>
                             <span><IoNotificationsOffOutline className="ml-1" /></span>
                         </PopoverTrigger>
-                        <PopoverContent>Place content for the popover here.</PopoverContent>
+                        <Notification />
                     </Popover>
                 </div>
 
@@ -61,7 +62,7 @@ const Navbar = () => {
                                 <IoVolumeMediumOutline />
                                 <IoBatteryChargingOutline />
                             </PopoverTrigger>
-                            <PopoverContent>Place content for the popover here.</PopoverContent>
+                            <UtilsBox />
                         </Popover>
                     </li>
                 </ul>

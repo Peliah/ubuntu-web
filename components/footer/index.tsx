@@ -5,10 +5,11 @@ import FootIcon from "../footer-Icon";
 
 interface FooterProps {
     onTerminalClick: () => void;
+    onFolderClick: () => void;
 }
 
 
-const Footer: React.FC<FooterProps> = ({ onTerminalClick }) => {
+const Footer: React.FC<FooterProps> = ({ onTerminalClick, onFolderClick }) => {
     const iconsData = [
         {
             id: 1,
@@ -29,8 +30,16 @@ const Footer: React.FC<FooterProps> = ({ onTerminalClick }) => {
             src: '/assets/terminal-svgrepo-com.svg',
             alt: 'terminal',
             name: 'Terminal',
-            isActive: false, // Not active, won't display the dot below
+            isActive: true,
             onClick: onTerminalClick,
+        },
+        {
+            id: 4,
+            src: '/assets/Folder-1.svg',
+            alt: 'folder',
+            name: 'Folder',
+            isActive: true,
+            onClick: onFolderClick,
         }
     ];
     return (

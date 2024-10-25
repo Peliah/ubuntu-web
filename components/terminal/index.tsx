@@ -92,11 +92,11 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                     <button className="text-white" onClick={handleMaximize}>
                         <IoExpand />
                     </button>
-                    <button className="text-white" onClick={onClose}>
-                        <IoClose />
-                    </button>
                     <button className="text-white">
                         <IoSquareOutline />
+                    </button>
+                    <button className="text-white" onClick={onClose}>
+                        <IoClose />
                     </button>
                 </div>
             </div>

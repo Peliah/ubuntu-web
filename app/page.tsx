@@ -1,5 +1,6 @@
 "use client";
 
+import FileExplorer from "@/components/file-explorer";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import Terminal from "@/components/terminal";
@@ -20,6 +21,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [showTerminal, setShowTerminal] = useState(false);
+  const [showFolder, setShowFolder] = useState(false);
   const [shrinkMain, setShrinkMain] = useState(false);
 
   const handleTerminalOpen = () => {
@@ -28,6 +30,14 @@ export default function Home() {
 
   const handleTerminalClose = () => {
     setShowTerminal(false);
+  };
+
+  const handleFolderOpen = () => {
+    setShowFolder(true);
+  };
+
+  const handleFolderClose = () => {
+    setShowFolder(false);
   };
 
   const handleShrinkMainToggle = () => {
@@ -87,8 +97,9 @@ export default function Home() {
 
       </div>
 
-      <Footer onTerminalClick={handleTerminalOpen} />
+      <Footer onTerminalClick={handleTerminalOpen} onFolderClick={handleFolderOpen} />
       {showTerminal && <Terminal onClose={handleTerminalClose} />}
+      {showFolder && <FileExplorer onClose={handleFolderClose} />}
     </div>
   );
 }

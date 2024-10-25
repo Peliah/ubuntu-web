@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+
+import { useState, useRef, useEffect } from "react";
 import { IoClose, IoSquareOutline, IoExpand } from "react-icons/io5";
 
 interface TerminalProps {
@@ -13,6 +14,12 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const [position, setPosition] = useState({ x: 100, y: 100 });
     const [command, setCommand] = useState<string>("");
     const [output, setOutput] = useState<string[]>([]);
+    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        // Trigger animation when the terminal opens
+        setIsOpen(true);
+    }, []);
 
     const handleDragStart = (e: React.MouseEvent) => {
         const initialX = e.clientX - position.x;
@@ -43,13 +50,14 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
         if (e.key === "Enter") {
             e.preventDefault();
             executeCommand(command);
-            setCommand("");
+            setCommand(""); // Clear command input after execution
         }
     };
 
     const executeCommand = (cmd: string) => {
         let response = "";
 
+        // Simulate some basic commands
         switch (cmd.trim().toLowerCase()) {
             case "help":
                 response = "Available commands: help, clear, hello";
@@ -58,12 +66,13 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                 response = "Hello, User!";
                 break;
             case "clear":
-                setOutput([]);
+                setOutput([]); // Clear output
                 return;
             default:
                 response = `Command not found: ${cmd}`;
         }
 
+        // Update output
         setOutput((prevOutput) => [...prevOutput, `$ ${cmd}`, response]);
     };
 
@@ -71,7 +80,7 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
         <div
             ref={terminalRef}
             className={`fixed transition-all bg-gray-900 text-green-400 border border-gray-700 shadow-lg ${isMaximized ? "top-0 left-0 w-full h-full" : "w-96 h-96"
-                }`}
+                } ${isOpen ? "animate-slideUp" : ""}`}
             style={{
                 left: `${position.x}px`,
                 top: `${position.y}px`,
@@ -85,14 +94,14 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
             >
                 <div className="font-bold"></div>
                 <div className="flex space-x-2">
-                    <button className="text-white">
-                        <IoSquareOutline />
-                    </button>
                     <button className="text-white" onClick={handleMaximize}>
                         <IoExpand />
                     </button>
                     <button className="text-white" onClick={onClose}>
                         <IoClose />
+                    </button>
+                    <button className="text-white">
+                        <IoSquareOutline />
                     </button>
                 </div>
             </div>
@@ -114,6 +123,22 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                     />
                 </div>
             </div>
+
+            {/* Animation style */}
+            <style jsx>{`
+        @keyframes slideUp {
+          from {
+            transform: translateY(100%);
+          }
+          to {
+            transform: translateY(0);
+          }
+        }
+
+        .animate-slideUp {
+          animation: slideUp 0.2s ease-out;
+        }
+      `}</style>
         </div>
     );
 };

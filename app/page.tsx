@@ -20,6 +20,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [showTerminal, setShowTerminal] = useState(false);
+  const [shrinkMain, setShrinkMain] = useState(false);
 
   const handleTerminalOpen = () => {
     setShowTerminal(true);
@@ -28,15 +29,21 @@ export default function Home() {
   const handleTerminalClose = () => {
     setShowTerminal(false);
   };
+
+  const handleShrinkMainToggle = () => {
+    setShrinkMain((prev) => !prev);
+  };
   return (
     <div className="min-h-screen flex flex-col ">
-      <Navbar />
+      <Navbar onShrinkMain={handleShrinkMainToggle} />
 
-      {/* This is the main section where most of my activities will take place */}
-      <div className="flex flex-col min-h-screen w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/assets/wallpaper1.jpg')" }}>
+      <div className="flex flex-col min-h-screen w-full bg-zinc-900">
         <ContextMenu>
           <ContextMenuTrigger asChild>
-            <main className="flex-grow flex flex-col w-full justify-center items-center text-white ">
+            <main
+              className={`flex-grow flex flex-col w-full justify-center items-center text-white bg-cover bg-center bg-no-repeat transition-transform duration-300 ${shrinkMain ? "transform scale-75 rounded-2xl" : ""}`}
+              style={{ backgroundImage: "url('/assets/wallpaper1.jpg')" }}
+            >
             </main>
           </ContextMenuTrigger>
           <ContextMenuContent>
@@ -81,7 +88,6 @@ export default function Home() {
       </div>
 
       <Footer onTerminalClick={handleTerminalOpen} />
-      {/* Render the Terminal component conditionally */}
       {showTerminal && <Terminal onClose={handleTerminalClose} />}
     </div>
   );

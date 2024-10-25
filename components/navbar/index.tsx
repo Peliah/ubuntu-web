@@ -8,7 +8,7 @@ import { IoBatteryChargingOutline, IoNotificationsOffOutline, IoVolumeMediumOutl
 import Notification from "./notification-content";
 import UtilsBox from "./utils-box";
 
-const Navbar = () => {
+const Navbar = ({ onShrinkMain }: { onShrinkMain: () => void }) => {
     const [time, setTime] = useState<Date>(new Date());
 
 
@@ -38,7 +38,7 @@ const Navbar = () => {
     return (
         <header className="absolute top-0 w-full bg-zinc-950 text-gray-300">
             <nav className="flex items-center justify-between px-2 relative py-1">
-                <div className="p-2 rounded-xl hover:bg-zinc-700">
+                <div className="p-2 rounded-xl hover:bg-zinc-700" onClick={onShrinkMain}>
                     <div className="flex-none px-4 font-bold bg-slate-300 py-1 rounded-md"></div>
                 </div>
 

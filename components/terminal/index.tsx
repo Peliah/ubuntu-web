@@ -17,7 +17,6 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        // Trigger animation when the terminal opens
         setIsOpen(true);
     }, []);
 
@@ -50,14 +49,12 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
         if (e.key === "Enter") {
             e.preventDefault();
             executeCommand(command);
-            setCommand(""); // Clear command input after execution
+            setCommand("");
         }
     };
 
     const executeCommand = (cmd: string) => {
         let response = "";
-
-        // Simulate some basic commands
         switch (cmd.trim().toLowerCase()) {
             case "help":
                 response = "Available commands: help, clear, hello";
@@ -66,13 +63,11 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
                 response = "Hello, User!";
                 break;
             case "clear":
-                setOutput([]); // Clear output
+                setOutput([]);
                 return;
             default:
                 response = `Command not found: ${cmd}`;
         }
-
-        // Update output
         setOutput((prevOutput) => [...prevOutput, `$ ${cmd}`, response]);
     };
 
@@ -126,19 +121,19 @@ const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
 
             {/* Animation style */}
             <style jsx>{`
-        @keyframes slideUp {
-          from {
-            transform: translateY(100%);
-          }
-          to {
-            transform: translateY(0);
-          }
-        }
+                @keyframes slideUp {
+                from {
+                    transform: translateY(100%);
+                }
+                to {
+                    transform: translateY(0);
+                }
+                }
 
-        .animate-slideUp {
-          animation: slideUp 0.2s ease-out;
-        }
-      `}</style>
+                .animate-slideUp {
+                animation: slideUp 0.2s ease-out;
+                }
+            `}</style>
         </div>
     );
 };

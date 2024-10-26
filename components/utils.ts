@@ -1,0 +1,1 @@
+export const background = '/assets/wallpaper1.jpg'

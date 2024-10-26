@@ -3,8 +3,9 @@
 import { IoBatteryCharging, IoCameraOutline, IoPowerOutline, IoSettingsOutline, IoSunnyOutline, IoVolumeMedium } from 'react-icons/io5';
 import { PopoverContent } from '../ui/popover';
 import { Slider } from '../ui/slider';
-
+import { useRouter } from 'next/navigation';
 const UtilsBox = () => {
+    const router = useRouter();
     return (
         <PopoverContent className='w-96 flex flex-col space-y-4 p-4 ring-1 ring-slate-700 rounded-lg shadow-lg bg-zinc-800 text-slate-200'>
             {/* Battery and icons section */}
@@ -20,7 +21,7 @@ const UtilsBox = () => {
                     <span className='cursor-pointer bg-zinc-700 rounded-full p-2'>
                         <IoSettingsOutline className=' text-base ' />
                     </span>
-                    <span className='cursor-pointer bg-zinc-700 rounded-full p-2'>
+                    <span className='cursor-pointer bg-zinc-700 rounded-full p-2' onClick={() => router.push('/login')}>
                         <IoPowerOutline className=' text-base ' />
                     </span>
                 </div>

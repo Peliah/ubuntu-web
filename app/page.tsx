@@ -16,6 +16,7 @@ import {
   ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu"
+import { background } from "@/components/utils";
 import { useState } from "react";
 
 
@@ -52,7 +53,7 @@ export default function Home() {
           <ContextMenuTrigger asChild>
             <main
               className={`flex-grow flex flex-col w-full justify-center items-center text-white bg-cover bg-center bg-no-repeat transition-transform duration-300 ${shrinkMain ? "transform scale-75 rounded-2xl" : ""}`}
-              style={{ backgroundImage: "url('/assets/wallpaper1.jpg')" }}
+              style={{ backgroundImage: `url(${background})` }}
             >
             </main>
           </ContextMenuTrigger>
